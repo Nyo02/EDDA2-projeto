@@ -1,0 +1,70 @@
+
+--- Ordenando 500 números ---
+Bubble Sort: 0.000343 segundos
+Insertion Sort: 0.000008 segundos
+Quick Sort: 0.001197 segundos
+Selection Sort: 0.000318 segundos
+Merge Sort: 0.000031 segundos
+
+--- Ordenando 1000 números ---
+Bubble Sort: 0.001257 segundos
+Insertion Sort: 0.000000 segundos
+Quick Sort: 0.004465 segundos
+Selection Sort: 0.001146 segundos
+Merge Sort: 0.000079 segundos
+
+--- Ordenando 1500 números ---
+Bubble Sort: 0.002907 segundos
+Insertion Sort: 0.000016 segundos
+Quick Sort: 0.010205 segundos
+Selection Sort: 0.002727 segundos
+Merge Sort: 0.000126 segundos
+
+--- Ordenando 2000 números ---
+Bubble Sort: 0.004988 segundos
+Insertion Sort: 0.000015 segundos
+Quick Sort: 0.017088 segundos
+Selection Sort: 0.004510 segundos
+Merge Sort: 0.000159 segundos
+
+--- Ordenando 2500 números ---
+Bubble Sort: 0.007903 segundos
+Insertion Sort: 0.000016 segundos
+Quick Sort: 0.025959 segundos
+Selection Sort: 0.007062 segundos
+Merge Sort: 0.000206 segundos
+
+--- Ordenando 3000 números ---
+Bubble Sort: 0.011319 segundos
+Insertion Sort: 0.000015 segundos
+Quick Sort: 0.036613 segundos
+Selection Sort: 0.010401 segundos
+Merge Sort: 0.000254 segundos
+
+--- Ordenando 3500 números ---
+Bubble Sort: 0.015344 segundos
+Insertion Sort: 0.000032 segundos
+Quick Sort: 0.048106 segundos
+Selection Sort: 0.014055 segundos
+Merge Sort: 0.000300 segundos
+
+--- Ordenando 4000 números ---
+Bubble Sort: 0.020259 segundos
+Insertion Sort: 0.000047 segundos
+Quick Sort: 0.061443 segundos
+Selection Sort: 0.017951 segundos
+Merge Sort: 0.000361 segundos
+
+--- Ordenando 4500 números ---
+Bubble Sort: 0.025431 segundos
+Insertion Sort: 0.000047 segundos
+Quick Sort: 0.075752 segundos
+Selection Sort: 0.023302 segundos
+Merge Sort: 0.000398 segundos
+
+--- Ordenando 5000 números ---
+Bubble Sort: 0.031937 segundos
+Insertion Sort: 0.000032 segundos
+Quick Sort: 0.094180 segundos
+Selection Sort: 0.028645 segundos
+Merge Sort: 0.000439 segundos

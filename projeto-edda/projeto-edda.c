@@ -2,23 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-// FunÃ§Ã£o para realizar a troca de valores
-void swap(int *xp, int *yp)
-{
+#include <unistd.h>  // Para usar a função sleep
+
+// Função para realizar a troca de valores
+void swap(int *xp, int *yp) {
     int temp = *xp;
     *xp = *yp;
     *yp = temp;
 }
 
 // Bubble Sort
-void bubbleSort(int arr[], int n)
-{
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
+void bubbleSort(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
                 swap(&arr[j], &arr[j + 1]);
             }
         }
@@ -26,13 +24,12 @@ void bubbleSort(int arr[], int n)
 }
 
 // Insertion Sort
-void insertionSort(int arr[], int n)
-{
-    for (int i = 1; i < n; i++)
-    {
-        int key = arr[i], j = i - 1;
-        while (j >= 0 && arr[j] > key)
-        {
+void insertionSort(int arr[], int n) {
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
             j = j - 1;
         }
@@ -40,14 +37,12 @@ void insertionSort(int arr[], int n)
     }
 }
 
-// Quick Sort
-int partition(int arr[], int low, int high)
-{
-    int pivot = arr[high], i = (low - 1);
-    for (int j = low; j <= high - 1; j++)
-    {
-        if (arr[j] < pivot)
-        {
+// Função auxiliar para o Quick Sort
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
             i++;
             swap(&arr[i], &arr[j]);
         }
@@ -56,10 +51,9 @@ int partition(int arr[], int low, int high)
     return (i + 1);
 }
 
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
+// Quick Sort
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
         int pi = partition(arr, low, high);
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
@@ -67,15 +61,12 @@ void quickSort(int arr[], int low, int high)
 }
 
 // Selection Sort
-void selectionSort(int arr[], int n)
-{
-    for (int i = 0; i < n - 1; i++)
-    {
-        int min_idx = i;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (arr[j] < arr[min_idx])
-            {
+void selectionSort(int arr[], int n) {
+    int i, j, min_idx;
+    for (i = 0; i < n - 1; i++) {
+        min_idx = i;
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
                 min_idx = j;
             }
         }
@@ -83,109 +74,180 @@ void selectionSort(int arr[], int n)
     }
 }
 
-int le_arquivo(int TAM, int *arr)
-{ /* faz a abertura do arquivo e leitura de uma quantidade de numeros */
-    int i;
-    FILE *arq = fopen("numeros_ordenar.txt", "rt");
-    if (arq == NULL)
-        return (-1); /* falha na abertura do arquivo */
-    else
-    {
-        /* arquivo aberto com sucesso */
-        srand(time(NULL));
-        for (i = 0; i < TAM; i++)
-        {
-            /* lendo 5000 valores aleatÃ³rios na faixa de 0 a 10000 */
-            fscanf(arq, "%d", &arr[i]);
-            printf("%d", arr[i]);
-            printf("\n");
+// Função auxiliar para o Merge Sort
+void merge(int arr[], int l, int m, int r) {
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    int L[n1], R[n2];
+
+    for (i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
         }
+        k++;
     }
-    fclose(arq);
-    return 0;
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
 }
 
-int main()
-{
-    srand(time(NULL));
-    int sizes[] = {500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000};
-    int num_tests = 1000;
-    FILE *arq_resultados = fopen("tempos_execucao.txt", "w");
+// Merge Sort
+void mergeSort(int arr[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
 
-    if (arq_resultados == NULL)
-    {
-        printf("Erro ao abrir o arquivo de saÃ­da\n");
+int main() {
+    FILE *file;
+    file = fopen("arq.txt.txt", "r");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo\n");
         return 1;
     }
 
-    for (int s = 0; s < 10; s++)
-    {
-        int n = sizes[s];
-        double bubble_total = 0, insertion_total = 0, quick_total = 0, selection_total = 0;
+    // Lê o conteúdo do arquivo
+    char buffer[100000];
+    fgets(buffer, sizeof(buffer), file);
+    fclose(file);
 
-        for (int t = 0; t < num_tests; t++)
-        {
-            int *arr = (int *)malloc(n * sizeof(int));
-            int *arr_copy1 = (int *)malloc(n * sizeof(int));
-            int *arr_copy2 = (int *)malloc(n * sizeof(int));
-            int *arr_copy3 = (int *)malloc(n * sizeof(int));
-            le_arquivo(n, arr);
-            memcpy(arr_copy1, arr, n * sizeof(int));
-            memcpy(arr_copy2, arr, n * sizeof(int));
-            memcpy(arr_copy3, arr, n * sizeof(int));
-
-            clock_t start, end;
-            // printar array no arquivo
-            for (int i = 0; i < n; i++)
-            {
-                // printf("%d", arr[i]);
-                fprintf(arq_resultados, " %d ", arr[i]);
-                if (i % 5 == 0)
-                {
-                    fprintf(arq_resultados, "\n");
-                }
-            }
-            // Bubble Sort
-            start = clock();
-            bubbleSort(arr, n);
-            end = clock();
-            bubble_total += ((double)(end - start)) / CLOCKS_PER_SEC;
-
-            // Insertion Sort
-            start = clock();
-            insertionSort(arr_copy1, n);
-            end = clock();
-            insertion_total += ((double)(end - start)) / CLOCKS_PER_SEC;
-
-            // Quick Sort
-            start = clock();
-            quickSort(arr_copy2, 0, n - 1);
-            end = clock();
-            quick_total += ((double)(end - start)) / CLOCKS_PER_SEC;
-
-            // Selection Sort
-            start = clock();
-            selectionSort(arr_copy3, n);
-            end = clock();
-            selection_total += ((double)(end - start)) / CLOCKS_PER_SEC;
-
-            free(arr);
-            free(arr_copy1);
-            free(arr_copy2);
-            free(arr_copy3);
-        }
-        printf("\n\nVetor ordenado ==> ");
-
-        fprintf(arq_resultados, "N=%d\n", n);
-        fprintf(arq_resultados, "Bubble Sort: %.6f segundos\n", bubble_total / num_tests);
-        fprintf(arq_resultados, "Insertion Sort: %.6f segundos\n", insertion_total / num_tests);
-        fprintf(arq_resultados, "Quick Sort: %.6f segundos\n", quick_total / num_tests);
-        fprintf(arq_resultados, "Selection Sort: %.6f segundos\n\n", selection_total / num_tests);
-
-        printf("Finalizado para N=%d\n", n);
+    // Conta a quantidade de números
+    char temp_buffer[100000];
+    strcpy(temp_buffer, buffer);
+    int count = 0;
+    for (char *p = strtok(temp_buffer, ","); p != NULL; p = strtok(NULL, ",")) {
+        count++;
     }
 
-    fclose(arq_resultados);
-    printf("Resultados salvos em tempos_execucao.txt\n");
+    // Armazena os números em arrays
+    int *arr = malloc(count * sizeof(int));
+    int *arr_copy1 = malloc(count * sizeof(int));
+    int *arr_copy2 = malloc(count * sizeof(int));
+    int *arr_copy3 = malloc(count * sizeof(int));
+    int *arr_copy4 = malloc(count * sizeof(int));
+
+    int idx = 0;
+    for (char *p = strtok(buffer, ","); p != NULL; p = strtok(NULL, ",")) {
+        arr[idx] = atoi(p);
+        arr_copy1[idx] = arr[idx];
+        arr_copy2[idx] = arr[idx];
+        arr_copy3[idx] = arr[idx];
+        arr_copy4[idx] = arr[idx];
+        idx++;
+    }
+
+    // Tamanhos dos subconjuntos
+    int sizes[] = {500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000};
+    int num_sizes = sizeof(sizes) / sizeof(sizes[0]);
+
+    // Abre o arquivo de saída para salvar os tempos
+    FILE *output_file = fopen("tempos_execucao.txt", "w");
+    if (output_file == NULL) {
+        printf("Erro ao criar o arquivo de saída\n");
+        return 1;
+    }
+
+    for (int i = 0; i < num_sizes; i++) {
+        int current_size = sizes[i];
+        printf("\n--- Ordenando %d números ---\n", current_size);
+        fprintf(output_file, "\n--- Ordenando %d números ---\n", current_size);
+
+        // Bubble Sort
+        printf("\nBubble Sort %d processando...\n", current_size);
+        double total_bubble_time = 0;
+        for (int j = 0; j < 1000; j++) {
+            clock_t start = clock();
+            bubbleSort(arr, current_size);
+            clock_t end = clock();
+            total_bubble_time += ((double)(end - start)) / CLOCKS_PER_SEC;
+        }
+        printf("Tempo médio de execução (1000 iterações): %f segundos\n", total_bubble_time / 1000);
+        fprintf(output_file, "Bubble Sort: %f segundos\n", total_bubble_time / 1000);
+
+        // Insertion Sort
+        printf("\nInsertion Sort %d processando...\n", current_size);
+        double total_insertion_time = 0;
+        for (int j = 0; j < 1000; j++) {
+            clock_t start = clock();
+            insertionSort(arr_copy1, current_size);
+            clock_t end = clock();
+            total_insertion_time += ((double)(end - start)) / CLOCKS_PER_SEC;
+        }
+        printf("Tempo médio de execução (1000 iterações): %f segundos\n", total_insertion_time / 1000);
+        fprintf(output_file, "Insertion Sort: %f segundos\n", total_insertion_time / 1000);
+
+        // Quick Sort
+        printf("\nQuick Sort %d processando...\n", current_size);
+        double total_quick_time = 0;
+        for (int j = 0; j < 1000; j++) {
+            clock_t start = clock();
+            quickSort(arr_copy2, 0, current_size - 1);
+            clock_t end = clock();
+            total_quick_time += ((double)(end - start)) / CLOCKS_PER_SEC;
+        }
+        printf("Tempo médio de execução (1000 iterações): %f segundos\n", total_quick_time / 1000);
+        fprintf(output_file, "Quick Sort: %f segundos\n", total_quick_time / 1000);
+
+        // Selection Sort
+        printf("\nSelection Sort %d processando...\n", current_size);
+        double total_selection_time = 0;
+        for (int j = 0; j < 1000; j++) {
+            clock_t start = clock();
+            selectionSort(arr_copy3, current_size);
+            clock_t end = clock();
+            total_selection_time += ((double)(end - start)) / CLOCKS_PER_SEC;
+        }
+        printf("Tempo médio de execução (1000 iterações): %f segundos\n", total_selection_time / 1000);
+        fprintf(output_file, "Selection Sort: %f segundos\n", total_selection_time / 1000);
+
+        // Merge Sort
+        printf("\nMerge Sort %d processando...\n", current_size);
+        double total_merge_time = 0;
+        for (int j = 0; j < 1000; j++) {
+            clock_t start = clock();
+            mergeSort(arr_copy4, 0, current_size - 1);
+            clock_t end = clock();
+            total_merge_time += ((double)(end - start)) / CLOCKS_PER_SEC;
+        }
+        printf("Tempo médio de execução (1000 iterações): %f segundos\n", total_merge_time / 1000);
+        fprintf(output_file, "Merge Sort: %f segundos\n", total_merge_time / 1000);
+    }
+
+    // Fecha o arquivo de saída
+    fclose(output_file);
+
+    // Libera a memória alocada
+    free(arr);
+    free(arr_copy1);
+    free(arr_copy2);
+    free(arr_copy3);
+    free(arr_copy4);
+
     return 0;
 }
