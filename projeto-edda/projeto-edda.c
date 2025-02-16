@@ -86,7 +86,7 @@ void selectionSort(int arr[], int n)
 int le_arquivo(int TAM, int *arr)
 { /* faz a abertura do arquivo e leitura de uma quantidade de numeros */
     int i;
-    FILE *arq = fopen("numeros_ordenar.txt", "rt");
+    FILE *arq = fopen("numeros_ordenar.txt.txt", "rt");
     if (arq == NULL)
         return (-1); /* falha na abertura do arquivo */
     else
@@ -95,10 +95,7 @@ int le_arquivo(int TAM, int *arr)
         srand(time(NULL));
         for (i = 0; i < TAM; i++)
         {
-            /* lendo 5000 valores aleatórios na faixa de 0 a 10000 */
-            fscanf(arq, "%d", &arr[i]);
-            printf("%d", arr[i]);
-            printf("\n");
+            fscanf(arq, "%d%*c,", &arr[i]);
         }
     }
     fclose(arq);
@@ -117,18 +114,22 @@ int main()
         printf("Erro ao abrir o arquivo de saída\n");
         return 1;
     }
-
     for (int s = 0; s < 10; s++)
     {
         int n = sizes[s];
         double bubble_total = 0, insertion_total = 0, quick_total = 0, selection_total = 0;
-
+        printf("Teste para %d números...\n", n);
         for (int t = 0; t < num_tests; t++)
         {
             int *arr = (int *)malloc(n * sizeof(int));
             int *arr_copy1 = (int *)malloc(n * sizeof(int));
             int *arr_copy2 = (int *)malloc(n * sizeof(int));
             int *arr_copy3 = (int *)malloc(n * sizeof(int));
+            if (!arr || !arr_copy1 || !arr_copy2 || !arr_copy3)
+            {
+                printf("Erro ao alocar memória!\n");
+                return 1;
+            }
             le_arquivo(n, arr);
             memcpy(arr_copy1, arr, n * sizeof(int));
             memcpy(arr_copy2, arr, n * sizeof(int));
@@ -136,11 +137,11 @@ int main()
 
             clock_t start, end;
             // printar array no arquivo
+            fprintf(arq_resultados, " Arquivo desordenado: \n");
             for (int i = 0; i < n; i++)
             {
-                // printf("%d", arr[i]);
-                fprintf(arq_resultados, " %d ", arr[i]);
-                if (i % 5 == 0)
+                fprintf(arq_resultados, "%d ", arr[i]);
+                if ((i + 1) % 5 == 0)
                 {
                     fprintf(arq_resultados, "\n");
                 }
@@ -173,6 +174,15 @@ int main()
             free(arr_copy1);
             free(arr_copy2);
             free(arr_copy3);
+            fprintf(arq_resultados, "\n Array ordenado: \n");
+            for (int i = 0; i < n; i++)
+            {
+                fprintf(arq_resultados, " %d ", arr[i]);
+                if (i % 5 == 0)
+                {
+                    fprintf(arq_resultados, "\n");
+                }
+            }
         }
         printf("\n\nVetor ordenado ==> ");
 
