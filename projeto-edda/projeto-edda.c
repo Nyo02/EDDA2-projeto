@@ -105,7 +105,7 @@ int le_arquivo(int TAM, int *arr)
 int main()
 {
     srand(time(NULL));
-    int sizes[] = {500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000};
+    int sizes[] = {5000, 4500, 4000, 3500, 3000, 2500, 2000, 1500, 1000, 500};
     int num_tests = 1000;
     FILE *arq_resultados = fopen("tempos_execucao.txt", "w");
 
@@ -118,17 +118,16 @@ int main()
     {
         int n = sizes[s];
         double bubble_total = 0, insertion_total = 0, quick_total = 0, selection_total = 0;
-        printf("Teste para %d números...\n", n);
+        printf("Teste para %d números...\n",n);
         for (int t = 0; t < num_tests; t++)
         {
             int *arr = (int *)malloc(n * sizeof(int));
             int *arr_copy1 = (int *)malloc(n * sizeof(int));
             int *arr_copy2 = (int *)malloc(n * sizeof(int));
             int *arr_copy3 = (int *)malloc(n * sizeof(int));
-            if (!arr || !arr_copy1 || !arr_copy2 || !arr_copy3)
-            {
-                printf("Erro ao alocar memória!\n");
-                return 1;
+            if (!arr || !arr_copy1 || !arr_copy2 || !arr_copy3) {
+            printf("Erro ao alocar memória!\n");
+            return 1;
             }
             le_arquivo(n, arr);
             memcpy(arr_copy1, arr, n * sizeof(int));
@@ -137,44 +136,45 @@ int main()
 
             clock_t start, end;
             // printar array no arquivo
+            /*
             fprintf(arq_resultados, " Arquivo desordenado: \n");
             for (int i = 0; i < n; i++)
             {
                 fprintf(arq_resultados, "%d ", arr[i]);
-                if ((i + 1) % 5 == 0)
-                {
+                if ((i + 1) % 5 == 0) {
                     fprintf(arq_resultados, "\n");
                 }
             }
+            */
             // Bubble Sort
+            //printf("Pegando tempo do bubblesort");
             start = clock();
             bubbleSort(arr, n);
             end = clock();
             bubble_total += ((double)(end - start)) / CLOCKS_PER_SEC;
 
             // Insertion Sort
+            //printf("Pegando tempo do Insertion Sort");
             start = clock();
             insertionSort(arr_copy1, n);
             end = clock();
             insertion_total += ((double)(end - start)) / CLOCKS_PER_SEC;
 
             // Quick Sort
+            //printf("Pegando tempo do Quick Sort");
             start = clock();
             quickSort(arr_copy2, 0, n - 1);
             end = clock();
             quick_total += ((double)(end - start)) / CLOCKS_PER_SEC;
 
             // Selection Sort
+            //printf("Pegando tempo do Selection Sort");
             start = clock();
             selectionSort(arr_copy3, n);
             end = clock();
             selection_total += ((double)(end - start)) / CLOCKS_PER_SEC;
-
-            free(arr);
-            free(arr_copy1);
-            free(arr_copy2);
-            free(arr_copy3);
-            fprintf(arq_resultados, "\n Array ordenado: \n");
+            /*
+            fprintf(arq_resultados, " Array ordenado: \n");
             for (int i = 0; i < n; i++)
             {
                 fprintf(arq_resultados, " %d ", arr[i]);
@@ -183,6 +183,13 @@ int main()
                     fprintf(arq_resultados, "\n");
                 }
             }
+            */
+            free(arr);
+            free(arr_copy1);
+            free(arr_copy2);
+            free(arr_copy3);
+            //printf("liberados");
+
         }
         printf("\n\nVetor ordenado ==> ");
 
