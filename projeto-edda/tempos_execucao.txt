@@ -1,70 +1,79 @@
+--- Ordenando 500 numeros ---
+Bubble Sort: 0,000562 segundos
+Insertion Sort: 0,000168 segundos
+Quick Sort: 0,000031 segundos
+Selection Sort: 0,000317 segundos
+Merge Sort: 0,000043 segundos
+Heap Sort: 0,000053 segundos
 
---- Ordenando 500 números ---
-Bubble Sort: 0.000343 segundos
-Insertion Sort: 0.000008 segundos
-Quick Sort: 0.001197 segundos
-Selection Sort: 0.000318 segundos
-Merge Sort: 0.000031 segundos
+--- Ordenando 1000 numeros ---
+Bubble Sort: 0,002286 segundos
+Insertion Sort: 0,000704 segundos
+Quick Sort: 0,000081 segundos
+Selection Sort: 0,001346 segundos
+Merge Sort: 0,000106 segundos
+Heap Sort: 0,000139 segundos
 
---- Ordenando 1000 números ---
-Bubble Sort: 0.001257 segundos
-Insertion Sort: 0.000000 segundos
-Quick Sort: 0.004465 segundos
-Selection Sort: 0.001146 segundos
-Merge Sort: 0.000079 segundos
+--- Ordenando 1500 numeros ---
+Bubble Sort: 0,004714 segundos
+Insertion Sort: 0,001557 segundos
+Quick Sort: 0,000162 segundos
+Selection Sort: 0,002737 segundos
+Merge Sort: 0,000173 segundos
+Heap Sort: 0,000223 segundos
 
---- Ordenando 1500 números ---
-Bubble Sort: 0.002907 segundos
-Insertion Sort: 0.000016 segundos
-Quick Sort: 0.010205 segundos
-Selection Sort: 0.002727 segundos
-Merge Sort: 0.000126 segundos
+--- Ordenando 2000 numeros ---
+Bubble Sort: 0,008628 segundos
+Insertion Sort: 0,002835 segundos
+Quick Sort: 0,000359 segundos
+Selection Sort: 0,004936 segundos
+Merge Sort: 0,000232 segundos
+Heap Sort: 0,000319 segundos
 
---- Ordenando 2000 números ---
-Bubble Sort: 0.004988 segundos
-Insertion Sort: 0.000015 segundos
-Quick Sort: 0.017088 segundos
-Selection Sort: 0.004510 segundos
-Merge Sort: 0.000159 segundos
+--- Ordenando 2500 numeros ---
+Bubble Sort: 0,014219 segundos
+Insertion Sort: 0,004357 segundos
+Quick Sort: 0,000261 segundos
+Selection Sort: 0,007941 segundos
+Merge Sort: 0,000464 segundos
+Heap Sort: 0,000401 segundos
 
---- Ordenando 2500 números ---
-Bubble Sort: 0.007903 segundos
-Insertion Sort: 0.000016 segundos
-Quick Sort: 0.025959 segundos
-Selection Sort: 0.007062 segundos
-Merge Sort: 0.000206 segundos
+--- Ordenando 3000 numeros ---
+Bubble Sort: 0,020502 segundos
+Insertion Sort: 0,005953 segundos
+Quick Sort: 0,000329 segundos
+Selection Sort: 0,011384 segundos
+Merge Sort: 0,000376 segundos
+Heap Sort: 0,000522 segundos
 
---- Ordenando 3000 números ---
-Bubble Sort: 0.011319 segundos
-Insertion Sort: 0.000015 segundos
-Quick Sort: 0.036613 segundos
-Selection Sort: 0.010401 segundos
-Merge Sort: 0.000254 segundos
+--- Ordenando 3500 numeros ---
+Bubble Sort: 0,029559 segundos
+Insertion Sort: 0,008635 segundos
+Quick Sort: 0,000375 segundos
+Selection Sort: 0,015204 segundos
+Merge Sort: 0,000431 segundos
+Heap Sort: 0,000586 segundos
 
---- Ordenando 3500 números ---
-Bubble Sort: 0.015344 segundos
-Insertion Sort: 0.000032 segundos
-Quick Sort: 0.048106 segundos
-Selection Sort: 0.014055 segundos
-Merge Sort: 0.000300 segundos
+--- Ordenando 4000 numeros ---
+Bubble Sort: 0,040517 segundos
+Insertion Sort: 0,011034 segundos
+Quick Sort: 0,000453 segundos
+Selection Sort: 0,019505 segundos
+Merge Sort: 0,000514 segundos
+Heap Sort: 0,000715 segundos
 
---- Ordenando 4000 números ---
-Bubble Sort: 0.020259 segundos
-Insertion Sort: 0.000047 segundos
-Quick Sort: 0.061443 segundos
-Selection Sort: 0.017951 segundos
-Merge Sort: 0.000361 segundos
+--- Ordenando 4500 numeros ---
+Bubble Sort: 0,049123 segundos
+Insertion Sort: 0,013383 segundos
+Quick Sort: 0,000521 segundos
+Selection Sort: 0,024079 segundos
+Merge Sort: 0,000586 segundos
+Heap Sort: 0,001088 segundos
 
---- Ordenando 4500 números ---
-Bubble Sort: 0.025431 segundos
-Insertion Sort: 0.000047 segundos
-Quick Sort: 0.075752 segundos
-Selection Sort: 0.023302 segundos
-Merge Sort: 0.000398 segundos
-
---- Ordenando 5000 números ---
-Bubble Sort: 0.031937 segundos
-Insertion Sort: 0.000032 segundos
-Quick Sort: 0.094180 segundos
-Selection Sort: 0.028645 segundos
-Merge Sort: 0.000439 segundos
+--- Ordenando 5000 numeros ---
+Bubble Sort: 0,065425 segundos
+Insertion Sort: 0,016228 segundos
+Quick Sort: 0,000542 segundos
+Selection Sort: 0,028932 segundos
+Merge Sort: 0,000633 segundos
+Heap Sort: 0,000846 segundos
